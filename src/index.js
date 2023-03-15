@@ -6,7 +6,7 @@ const cors = require('cors');
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-app.use(express.static('src'));
+//app.use(express.static('src'));
 
 const port = 3003;
 
@@ -20,6 +20,12 @@ const CustomerSchema = new mongoose.Schema({
 });
 
 const Customer = mongoose.model('vlfsr', CustomerSchema);
+
+
+
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+    });
 
 app.get('/cstm', async (req, res) => {
     const Customers = await Customer.find();
