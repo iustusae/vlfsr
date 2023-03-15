@@ -6,6 +6,8 @@ const cors = require('cors');
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static('src'));
+
 const port = 3003;
 
 mongoose.connect('mongodb+srv://root:Aym%40n1504@cluster0.0rfiy6k.mongodb.net/db', { useNewUrlParser: true })
