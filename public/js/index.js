@@ -7,42 +7,42 @@ app.use(bodyParser.json());
 app.use(cors());
 //app.use(express.static('src'));
 
-const port = 3003;
+const port = process.env.PORT || 3003;
 mongoose.connect('mongodb+srv://root:Aym%40n1504@cluster0.0rfiy6k.mongodb.net/db', {
-  useNewUrlParser: true
+    useNewUrlParser: true
 }).then(() => console.log('MongoDB is on :D')).catch(err => console.log(err));
 const CustomerSchema = new mongoose.Schema({
-  aptName: String,
-  filterSize: String
+    aptName: String,
+    filterSize: String
 });
 const Customer = mongoose.model('vlfsr', CustomerSchema);
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/index.html');
 });
 app.get('/cstm', async (req, res) => {
-  const Customers = await Customer.find();
-  res.json(Customers);
+    const Customers = await Customer.find();
+    res.json(Customers);
 });
 app.post('/cstm', async (req, res) => {
-  console.log(req.body);
-  const newCustomer = new Customer(req.body);
-  await newCustomer.save();
-  res.json(newCustomer);
+    console.log(req.body);
+    const newCustomer = new Customer(req.body);
+    await newCustomer.save();
+    res.json(newCustomer);
 });
 app.put('/cstm/:id', async (req, res) => {
-  const {
-    id
-  } = req.params;
-  const updatedCustomer = await Customer.findByIdAndUpdate(id, req.body, {
-    new: true
-  });
-  res.json(updatedCustomer);
+    const {
+        id
+    } = req.params;
+    const updatedCustomer = await Customer.findByIdAndUpdate(id, req.body, {
+        new: true
+    });
+    res.json(updatedCustomer);
 });
 app.delete('/cstm/:id', async (req, res) => {
-  const {
-    id
-  } = req.params;
-  await Customer.findByIdAndDelete(id);
-  res.sendStatus(204);
+    const {
+        id
+    } = req.params;
+    await Customer.findByIdAndDelete(id);
+    res.sendStatus(204);
 });
 app.listen(port, () => console.log(`Server running on port ${port}`));

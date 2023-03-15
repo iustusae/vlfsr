@@ -135,7 +135,7 @@
         integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <script>
         function fetchCustomers(searchTerm) {
-            fetch('http://localhost:3003/cstm')
+            fetch('/cstm')
                 .then(response => response.json())
                 .then(customers => {
                     const customerList = document.getElementById('customerList');
@@ -197,7 +197,7 @@
 
 
         function deleteCustomer(id) {
-            fetch(`http://localhost:3003/cstm/${id}`, { method: 'DELETE' })
+            fetch(`/cstm/${id}`, { method: 'DELETE' })
                 .then(() => location.reload())
                 .catch(error => console.error(error));
         }
@@ -249,7 +249,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "http://localhost:3003/cstm",
+                    url: "/cstm",
                     dataType: "json",
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(data),
