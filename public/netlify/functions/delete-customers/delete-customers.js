@@ -12,8 +12,9 @@ exports.handler = async (event, context) => {
     });
     console.log('MongoDB is on :D');
 
-    const { id } = event.queryStringParameters;
-    console.log(id);
+    const path = event.path;
+  const id = path.split('/').pop();
+    console.log("id => " + id);
     await Customer.findByIdAndDelete(id);
 
     await mongoose.connection.close();
