@@ -18,8 +18,8 @@ app.get('/', function (req, res) {
 });
 
 // Use Netlify Functions for routes
-app.get('/cstm', functions.getCustomers);
-app.post('/cstm', functions.createCustomer);
+app.get('https://vlfsr.netlify.app/.netlify/functions/get-customers', functions.getCustomers);
+app.post('https://vlfsr.netlify.app/.netlify/functions/create-customers', functions.createCustomer);
 app.put('/cstm/:id', functions.updateCustomer);
 app.delete('/cstm/:id', functions.deleteCustomer);
 app.listen(port, () => console.log(`Server running on port ${port}`));

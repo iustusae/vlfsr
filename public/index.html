@@ -135,7 +135,7 @@
         integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <script>
         function fetchCustomers(searchTerm) {
-            fetch('/cstm')
+            fetch('https://vlfsr.netlify.app/.netlify/functions/get-customers')
                 .then(response => response.json())
                 .then(customers => {
                     const customerList = document.getElementById('customerList');
@@ -154,7 +154,7 @@
                                 var numB = parseInt(b.aptName.split("-")[0]);
                                 return numA - numB;
                             });
-                            
+
                             const row = customerList.insertRow();
                             const aptNameCell = row.insertCell(0);
                             const filterSizeCell = row.insertCell(1);
