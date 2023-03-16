@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 
-exports.handler = async (event, context) => {
+// Create a connection pool
+const uri = 'mongodb+srv://root:Aym%40n1504@cluster0.0rfiy6k.mongodb.net/db';
+const options = { useNewUrlParser: true, poolSize: 10, useUnifiedTopology: true };
+const connectionPool = mongoose.createPool(uri, options);
 
-mongoose.connect('mongodb+srv://root:Aym%40n1504@cluster0.0rfiy6k.mongodb.net/db', {
-  useNewUrlParser: true
-}).then(() => console.log('MongoDB is on :D')).catch(err => console.log(err));
-  const Customer = mongoose.model('vlfsr', new mongoose.Schema({
+exports.handler = async (event, context) => {
+  const Customer = connectionPool.model('vlfsr', new mongoose.Schema({
     aptName: String,
     filterSize: String
   }));
