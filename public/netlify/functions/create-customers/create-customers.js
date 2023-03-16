@@ -20,4 +20,3 @@ exports.handler = async (event, context) => {
     body: JSON.stringify(newCustomer)
   };
 };
-module.exports = { handler };
