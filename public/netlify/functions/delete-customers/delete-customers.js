@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
-const Customer = require("../../../js/Customer");
 
+const Customer = mongoose.model('vlfsr', new mongoose.Schema({
+  aptName: String,
+  filterSize: String
+}));
 
 exports.handler = async (event, context) => {
   try {
